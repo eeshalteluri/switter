@@ -1,15 +1,20 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { FaFeather } from 'react-icons/fa6'
+import LoginModal from './modals/LoginModal'
+import useLoginModal from '../hooks/useLoginModal'
 
 const SideBarTweetButton = () => {
   const router = useRouter()
+  const loginModal = useLoginModal()
+
+  const onClick = useCallback(() => {
+    loginModal.onOpen();
+  }, [loginModal])
     return (
     <div
-        onClick={() => {
-            router.push('/tweet')
-        }}
+        onClick={onClick}
     >
         {/*Mobile first*/}
         <div className='

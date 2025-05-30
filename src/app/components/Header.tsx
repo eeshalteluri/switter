@@ -1,3 +1,4 @@
+'use client'
 import { useRouter } from 'next/navigation'
 import React, { useCallback } from 'react'
 import { BiArrowBack } from 'react-icons/bi';
@@ -24,8 +25,10 @@ const Header: React.FC<HeaderProps> = ({label, showBackButton}) => {
                     className='
                     cursor-pointer hover:opacity-70 transition' />
                 )}
+            <h1 className='text-white text-2xl font-semibold'>
+                {label}
+            </h1>
         </div>
-        Header
     </div>
   )
 }

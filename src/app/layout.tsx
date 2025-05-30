@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./components/Sidebar";
 import FollowBar from "./components/FollowBar";
+import RegisterModal from "./components/modals/RegisterModal";
+import LoginModal from "./components/modals/LoginModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +31,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <LoginModal />
+        <RegisterModal />
         <div className="h-screen bg-black">
         <div className="container h-full mx-auto xl:px-30 max-w-6xl">
         <div className="grid grid-cols-4 h-full">

@@ -1,7 +1,12 @@
 'use client'
-import useLoginModal from '@/app/hooks/useLoginModal';
-import useRegisterModal from '@/app/hooks/useRegisterModal'
+import axios from 'axios';
+import toast from 'react-hot-toast';
 import React, { useCallback, useState } from 'react'
+import { signIn } from "next-auth/react"
+
+import useLoginModal from '@/src/app/hooks/useLoginModal';
+import useRegisterModal from '@/src/app/hooks/useRegisterModal'
+
 import Input from '../Input';
 import Modal from '../Modal';
 
@@ -22,19 +27,44 @@ const RegisterModal = () => {
         loginModal.onOpen()
     },[isLoading, registerModal, loginModal])
 
-    const handleSubmit = useCallback(async () => {
-       try{
-         setIsLoading(true);
+const handleSubmit = useCallback(async () => {
+  try {
+    setIsLoading(true);
 
-        //ADD Log IN
-        registerModal.onClose();
-        
-       }catch(error){
-        console.log(error)
-       }finally {
-        setIsLoading(false)
-       }
-    }, [registerModal])
+    console.log("Email: ", email);
+    console.log("Password: ", password);
+    console.log("Username: ", username);
+    console.log("Name: ", name);
+
+    await axios.post('/api/register', {
+      email,
+      password,
+      username,
+      name
+    });
+
+    toast.success("Account created.");
+
+    const result = await signIn('credentials', {
+      email,
+      password,
+      redirect: false
+    });
+
+    if (result?.error) {
+      toast.error("Invalid login credentials");
+    } else {
+      registerModal.onClose();
+    }
+
+  } catch (error) {
+    console.log(error);
+    toast.error("Something went wrong");
+  } finally {
+    setIsLoading(false);
+  }
+}, [registerModal, email, password, username, name]);
+
 
     const BodyContent = (
         <div className='flex flex-col gap-4'>
@@ -52,12 +82,14 @@ const RegisterModal = () => {
             />
             <Input
                 placeholder='Email'
+                type='email'
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
                 disabled={isLoading}
             />
             <Input
                 placeholder='Password'
+                type='password'
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
                 disabled={isLoading}

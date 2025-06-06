@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { BsBellFill, BsHouseFill } from 'react-icons/bs'
 import { FaUser } from 'react-icons/fa'
@@ -5,8 +6,12 @@ import SideBarLogo from './SideBarLogo'
 import SidebarItem from './SidebarItem'
 import { BiLogOut } from 'react-icons/bi'
 import SideBarTweetButton from './SideBarTweetButton'
+import useCurrentUser from '../hooks/useCurrentUser'
+import { signOut } from 'next-auth/react'
 
 const Sidebar = () => {
+  const { data : currentUser } = useCurrentUser();
+
   const items = [
     {
         label: 'Home',
@@ -41,7 +46,9 @@ const Sidebar = () => {
             )
           )}
 
-          <SidebarItem onClick={() => {}} label='Logout' icon={BiLogOut} />
+          {currentUser && 
+          (<SidebarItem onClick={() => signOut()} label='Logout' icon={BiLogOut} />
+          )}
           <SideBarTweetButton />
         </div>
       </div>

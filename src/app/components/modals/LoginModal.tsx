@@ -22,27 +22,30 @@ const LoginModal = () => {
         },[isLoading, registerModal, loginModal])
 
     const handleSubmit = useCallback(async () => {
-       try{
-         setIsLoading(true);
+    try {
+        setIsLoading(true);
 
-         console.log("Email: ", email);
-         console.log("Password: ", password);
+        const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        });
 
-        //ADD Log IN
-        await signIn("credentials", {
-            email,
-            password,
-            redirect: false,
-        })
+        console.log("SignIn Response:", res);
 
+        if (res?.ok) {
         loginModal.onClose();
-        
-       }catch(error){
-        console.log(error)
-       }finally {
-        setIsLoading(false)
-       }
-    }, [loginModal, email, password])
+        } else {
+        // Optional: show error to user
+        console.error("Login failed", res?.error);
+        }
+    } catch (error) {
+        console.error("Login error", error);
+    } finally {
+        setIsLoading(false);
+    }
+    }, [loginModal, email, password]);
+
 
     const BodyContent = (
         <div className='flex flex-col gap-4'>

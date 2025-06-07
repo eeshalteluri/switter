@@ -21,12 +21,14 @@ const Sidebar = () => {
     {
         label: 'Notifications',
         href: '/notifications',
-        icon: BsBellFill
+        icon: BsBellFill,
+        auth: true,
     },
     {
         label: 'Profile',
         href: '/users/123',
-        icon: FaUser
+        icon: FaUser,
+        auth: true,
     },
   ]
     return (
@@ -36,12 +38,13 @@ const Sidebar = () => {
           <SideBarLogo />
 
           {
-            items.map((items, index) => (
+            items.map((item, index) => (
               <SidebarItem 
                 key={index}
-                href={items.href}
-                label={items.label}
-                icon={items.icon}
+                href={item.href}
+                label={item.label}
+                icon={item.icon}
+                auth={item.auth}
               />
             )
           )}

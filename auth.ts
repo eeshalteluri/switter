@@ -1,5 +1,5 @@
 import NextAuth from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
+import Credentials from "next-auth/providers/credentials"
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import prisma from "@/prismadb"
 import bcrypt from "bcrypt"
@@ -7,7 +7,7 @@ import bcrypt from "bcrypt"
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
-    CredentialsProvider({
+    Credentials({
         name: 'credentials',
         credentials: {
             email: { label: 'email', type: 'text'},

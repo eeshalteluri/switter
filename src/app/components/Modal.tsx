@@ -108,7 +108,7 @@ const Modal: React.FC<ModalProps> = ({
                         className='
                             text-3xl font-semibold text-white
                         '
-                    >{actionLabel}</h3>
+                    >{title}</h3>
                     <button
                         onClick={handleClose}
                         className='

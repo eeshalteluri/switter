@@ -8,6 +8,7 @@ import LoginModal from "./components/modals/LoginModal";
 
 import {Toaster} from 'react-hot-toast'
 import { SessionProvider } from 'next-auth/react'
+import EditModal from "./components/modals/EditModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default async function RootLayout({
       >
         <SessionProvider>
           <Toaster/>
+          <EditModal/>
           <LoginModal />
           <RegisterModal />
           <div className="h-screen bg-black">

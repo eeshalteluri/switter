@@ -10,6 +10,7 @@ import useUser from "../hooks/useUser";
 import { useMemo } from 'react';
 import Button from './Button';
 import { BiCalendar } from 'react-icons/bi';
+import useEditModal from '../hooks/useEditModal';
 
 interface UserBioProps {
     userId: string;
@@ -18,6 +19,8 @@ interface UserBioProps {
 const UserBio : React.FC<UserBioProps> = ({userId}) => {
     const {data: currentUser } = useCurrentUser();
     const {data: fetchedUser } = useUser(userId);
+
+    const editModal = useEditModal();
 
     console.log("User Bio fecthed User: ",fetchedUser)
 
@@ -36,7 +39,7 @@ const UserBio : React.FC<UserBioProps> = ({userId}) => {
                 <Button 
                     secondary
                     label='Edit'
-                    onClick={() => {}}
+                    onClick={editModal.onOpen}
                 />
             ) : (
                 <Button 

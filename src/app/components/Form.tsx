@@ -35,7 +35,13 @@ const Form : React.FC<FormProps> = ({
         try{
             setIsLoading(true);
 
-            await axios.post('/api/posts', {postBody: body})
+            const url = isComment ? `/api/comments/${postId}` : `/api/posts`
+
+            if(isComment){
+                await axios.post(`/api/comments/${postId}`, {commentBody: body})
+            }else{
+                await axios.post(`/api/posts`, {postBody: body})
+            }
 
             toast.success('Tweet created');
             
@@ -46,7 +52,7 @@ const Form : React.FC<FormProps> = ({
         }finally{
             setIsLoading(false);
         }
-    }, [body, mutatePosts])
+    }, [body, mutatePosts, isComment])
 
   return (
     <div className='border-b-[1px] border-neutral-800 px-5 py-2'>

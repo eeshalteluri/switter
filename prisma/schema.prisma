@@ -49,7 +49,7 @@ model Post {
 
 model Comment {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  body String
+  commentBody String
   userId String @db.ObjectId
   postId String @db.ObjectId
   createdAt DateTime @default(now())

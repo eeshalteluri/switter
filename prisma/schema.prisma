@@ -37,7 +37,7 @@ model User {
 
 model Post {
     id String @id @default(auto()) @map("_id") @db.ObjectId
-    body String
+    postBody String
     userId String @db.ObjectId
     likedIds String[] @db.ObjectId
     createdAt DateTime @default(now())

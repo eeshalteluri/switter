@@ -5,7 +5,7 @@ export async function GET(
   { params }: { params: { userId: string }}
 ) {
   try {
-    const userId = params.userId;
+    const { userId } = await params;
     console.log(userId, typeof(userId));
 
     if(!userId || typeof userId !== 'string'){

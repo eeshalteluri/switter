@@ -7,6 +7,7 @@ import Header from "../../components/Header"
 import UserHero from "../../components/UserHero";
 import useUser from "../../hooks/useUser";
 import UserBio from "../../components/UserBio";
+import PostFeed from "../../components/posts/PostFeed";
 
 const UserView = () => {
     const params = useParams();
@@ -29,6 +30,7 @@ const UserView = () => {
         <Header showBackButton label={fetchedUser?.name}/>
         <UserHero userId={userId as string}/>
         <UserBio userId={userId as string}/>
+        <PostFeed userId={userId as string}/>
     </div>
   )
 }

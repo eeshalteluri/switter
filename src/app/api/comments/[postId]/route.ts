@@ -22,7 +22,7 @@ export async function POST(
 
     const comment = await prisma.comment.create({
       data: {
-        body,
+        commentBody: body,
         userId: currentUser.id,
         postId
       }

@@ -1,5 +1,6 @@
 import serverAuth from "@/libs/serverAuth";
 import { NextRequest, NextResponse } from "next/server";
+import prisma from "@/prismadb";
 
 export async function POST(
   req: NextRequest
@@ -13,7 +14,7 @@ export async function POST(
         throw new Error('Invalid ID');    
     }
 
-    const user = await prisma?.user.findUnique({
+    const user = await prisma.user.findUnique({
         where: {
             id: userId
         }

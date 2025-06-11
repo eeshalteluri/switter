@@ -35,8 +35,6 @@ const Form : React.FC<FormProps> = ({
         try{
             setIsLoading(true);
 
-            const url = isComment ? `/api/comments/${postId}` : `/api/posts`
-
             if(isComment){
                 await axios.post(`/api/comments/${postId}`, {commentBody: body})
             }else{
@@ -87,7 +85,8 @@ const Form : React.FC<FormProps> = ({
                             opacity-0
                             peer-focus:opacity-100
                             h-[1px]
-                            w-fullborder-neutral-800
+                            w-full
+                            border-neutral-800
                             transition
                             '
                             />

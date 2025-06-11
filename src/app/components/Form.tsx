@@ -6,6 +6,7 @@ import useRegisterModal from '../hooks/useRegisterModal';
 import useLoginModal from '../hooks/useLoginModal';
 import useCurrentUser from '../hooks/useCurrentUser';
 import usePosts from '../hooks/usePosts';
+import usePost from '../hooks/usePost';
 import axios from 'axios';
 import Button from './Button';
 import Avatar from './Avatar';
@@ -27,6 +28,7 @@ const Form : React.FC<FormProps> = ({
 
     const { data: currentUser } = useCurrentUser();
     const { mutate: mutatePosts} = usePosts();
+    const { mutate: mutatePost} = usePost(postId as string);
 
     const [body, setBody] = useState('');
     const [isLoading, setIsLoading] = useState(false);
@@ -36,7 +38,7 @@ const Form : React.FC<FormProps> = ({
             setIsLoading(true);
 
             if(isComment){
-                await axios.post(`/api/comments/${postId}`, {commentBody: body})
+                await axios.post(`/api/comment/${postId}`, { body })
             }else{
                 await axios.post(`/api/posts`, {postBody: body})
             }
@@ -45,12 +47,13 @@ const Form : React.FC<FormProps> = ({
             
             setBody('');
             mutatePosts();
+            mutatePost();
         }catch(error){
             toast.error("Something went wrong");
         }finally{
             setIsLoading(false);
         }
-    }, [body, mutatePosts, isComment])
+    }, [body, mutatePosts, isComment, postId, mutatePost])
 
   return (
     <div className='border-b-[1px] border-neutral-800 px-5 py-2'>

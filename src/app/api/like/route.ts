@@ -28,6 +28,29 @@ export async function POST(
 
     updatedLikedIds.push(currentUser.id);
 
+    //add like notification
+    try{
+      if(post?.userId){
+        await prisma.notification.create({
+          data: {
+            body: 'Someone liked your tweet!',
+            userId: post.userId
+          }
+        })
+
+        await prisma.user.update({
+          where: {
+            id: post.userId
+          },
+          data: {
+            hasNotifications: true
+          }
+        })
+      }
+    }catch(error){
+      console.log(error);
+    }
+
     const updatedPost = await prisma.post.update({
         where: {
             id: postId

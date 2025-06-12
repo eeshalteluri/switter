@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useCallback } from 'react'
 import { IconType } from 'react-icons'
+import { BsDot } from 'react-icons/bs'
 import useCurrentUser from '../hooks/useCurrentUser';
 import useLoginModal from '../hooks/useLoginModal';
 
@@ -11,6 +12,7 @@ interface SidebarItemProps {
     icon: IconType;
     onClick?: () => void
     auth?: boolean //checking id the route is protected
+    alert?: boolean
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({
@@ -18,8 +20,10 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     href, 
     icon: Icon, 
     onClick,
-    auth
+    auth,
+    alert
 }) => {
+        console.log("Alert: ", alert);
         const router = useRouter();
         const loginModal = useLoginModal();
         const {data: currentUser} = useCurrentUser();
@@ -40,6 +44,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
     <div onClick={handleClick} className='flex flex-row items-center'>
         <div
             className='
+            relative
             rounded-full
             h-14w-14
             flex
@@ -54,10 +59,12 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             '
         >
             <Icon size={28} color="white"/>
+            { alert ? <BsDot className='text-sky-500 absolute -top-4 left-0' size={70}/> : null }
         </div>
 
         <div
             className='
+                relative
                 hidden
                 lg:flex
                 items-center
@@ -72,6 +79,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             <p className='text-white text-xl hidden lg:block'>
                 {label}
             </p>
+            { alert ? <BsDot className='text-sky-500 absolute -top-4 left-0' size={70}/> : null }
         </div>
     </div>
   )

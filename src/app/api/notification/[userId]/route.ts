@@ -3,10 +3,10 @@ import prisma from "@/prismadb";
 
 export async function GET(
   req: NextRequest,
-  { params } : {params: { userId : string } }
+  { params } : {params: Promise<{ userId : string }> }
 ) {
   try {
-    const { userId } = params;
+    const { userId } = await params;
     
     if(!userId || typeof userId !== 'string'){
       throw new Error('Invalid user ID');

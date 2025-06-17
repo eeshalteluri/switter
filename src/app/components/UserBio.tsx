@@ -1,11 +1,9 @@
 'use client'
 
 import { format } from 'date-fns';
-import Image from "next/image";
 
 import useCurrentUser from "../hooks/useCurrentUser";
 
-import Avatar from "./Avatar";
 import useUser from "../hooks/useUser";
 import { useMemo } from 'react';
 import Button from './Button';

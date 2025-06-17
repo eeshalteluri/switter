@@ -2,15 +2,11 @@ import serverAuth from "@/libs/serverAuth";
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prismadb"
 
-export async function GET(
-    req: NextRequest
-) {
+export async function GET() {
     try{
-        let posts;
-
         console.log("hello");
 
-        posts = await prisma.post.findMany({
+        const posts = await prisma.post.findMany({
             include: {
                 user: true,
                 comments: true

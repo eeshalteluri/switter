@@ -40,7 +40,7 @@ const PostItem: React.FC<PostItemProps> = ({ data }) => {
         }
 
         toggleLike();
-    }, [loginModal])
+    }, [currentUser, toggleLike, loginModal])
 
     const createdAt = useMemo(() => {
         if(!data?.createdAt) {

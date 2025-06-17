@@ -1,6 +1,6 @@
 //To fetch our current loggedin user
 import serverAuth from "@/libs/serverAuth";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET () {
     try{

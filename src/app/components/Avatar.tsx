@@ -18,7 +18,7 @@ const Avatar: React.FC<AvatarProps> = ({
     const router = useRouter();
     const {data: fetchedUser } = useUser(userId);
 
-    const onClick = useCallback((event: any) => {
+    const onClick = useCallback((event: React.MouseEvent<HTMLImageElement>) => {
         event.stopPropagation();
 
         const url = `/users/${userId}`;

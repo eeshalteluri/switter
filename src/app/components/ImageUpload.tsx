@@ -16,19 +16,20 @@ const ImageUpload : React.FC<ImageUploadProps> = ({
     value,
     disabled
 }) => {
-    const [base64, setBase64] = useState(value);
+    const [base64, setBase64] = useState<string | undefined>(value);
     const handleChange = useCallback((base64: string) => {
       onChange(base64);  
     }, [onChange])
 
-    const handleDrop = useCallback((files: any) => {
+    const handleDrop = useCallback((files: File[]) => {
         const file = files[0];
         const reader = new FileReader();
 
-        reader.onload = (event: any) => {
-            setBase64(event.target.result);
-            handleChange(event.target.result);
-        }
+         reader.onload = (event: ProgressEvent<FileReader>) => {
+            const result = event.target?.result as string;
+            setBase64(result);
+            handleChange(result);
+        };
 
         reader.readAsDataURL(file);
     }, [handleChange]);

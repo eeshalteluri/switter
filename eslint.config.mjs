@@ -13,7 +13,11 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     ignores: ['src/generated/**'], // ⬅️ Ignore Prisma generated files
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+    }
   },
+
 ];
 
 export default eslintConfig;

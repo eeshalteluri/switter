@@ -1,5 +1,5 @@
 'use client'
-import { useParams, useRouter } from "next/navigation"
+import { useParams } from "next/navigation"
 
 import { ClipLoader } from "react-spinners"
 
@@ -10,7 +10,6 @@ import Form from "../../components/Form";
 import CommentFeed from "../../components/posts/CommentFeed";
 
 const PostView = () => {
-    const router = useRouter();
     const params = useParams();
     const postId =  params['postId'];
 

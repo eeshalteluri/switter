@@ -24,7 +24,7 @@ export async function POST(
         throw new Error('Invalid Post');
     }
 
-    let updatedLikedIds = [...(post.likedIds) || []];
+    const updatedLikedIds = [...(post.likedIds) || []];
 
     updatedLikedIds.push(currentUser.id);
 

@@ -23,7 +23,7 @@ const Avatar: React.FC<AvatarProps> = ({
 
         const url = `/users/${userId}`;
         router.push(url);
-    },[])
+    },[router, userId])
     return(
     <div className={`
         ${hasBorder ? 'border-4 border-black' : ''}

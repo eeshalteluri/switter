@@ -24,7 +24,7 @@ export async function POST(
         throw new Error('Invalid User');
     }
 
-    let updatedFollowingIds = [...(currentUser.followingIds || [])];
+    const updatedFollowingIds = [...(currentUser.followingIds || [])];
     updatedFollowingIds.push(userId);
 
     const updatedUser = await prisma?.user.update({

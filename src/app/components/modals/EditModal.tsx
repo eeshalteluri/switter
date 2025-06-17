@@ -56,7 +56,7 @@ const EditModal = () => {
 
             editModal.onClose()
         }catch(error){
-
+            console.log(error);
         }
     }, [name,
         username,

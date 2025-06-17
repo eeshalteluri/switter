@@ -14,14 +14,14 @@ interface PostItemProps {
     userId?: string;
 } 
 
-const PostItem: React.FC<PostItemProps> = ({ data, userId }) => {
+const PostItem: React.FC<PostItemProps> = ({ data }) => {
 
     console.log("Post Item Data: ", data)
     const router = useRouter();
     const loginModal = useLoginModal();
 
     const { data: currentUser } = useCurrentUser();
-    const { hasLiked, toggleLike } = useLike({ postId: data.id, userId});
+    const { hasLiked, toggleLike } = useLike({ postId: data.id});
 
     const goToUser = useCallback((event: any) => {
         event?.stopPropagation();

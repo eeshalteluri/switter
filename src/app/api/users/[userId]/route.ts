@@ -5,6 +5,7 @@ export async function GET(
   { params }: { params: Promise<{ userId: string }>}
 ) {
   try {
+    console.log(req);
     const { userId } = await params;
     console.log(userId, typeof(userId));
 

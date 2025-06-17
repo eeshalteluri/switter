@@ -6,6 +6,7 @@ export async function GET(
   { params }: { params: Promise<{ postId: string }>}
 ) {
   try {
+    console.log(req);
     const { postId } = await params; 
 
     console.log(`Get specific post: ${postId}`);

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prismadb"
 
 export async function GET(
+    req: Request,
     { params }: { params: Promise<{ userId: string }>}
 ) {
     const { userId } = await params; 

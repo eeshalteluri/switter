@@ -6,12 +6,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
   req: NextRequest,
-  { params }: { params: { postId: string }}
+  { params }: { params: { postId: string } }
 ) {
   try {
     
     const { body } = await req.json();
-    const { postId } = await params; 
+    const { postId } = params; 
     const { currentUser } = await serverAuth();
 
     console.log(`Get specific post's comments: ${postId}`);
